@@ -4,9 +4,11 @@ exports.middlewareGlobal = (req, res, next) => {
 };
 
 exports.checkCsrfError = (err, req, res, next) => {
-    if(err && 'EBADCSRFTOKEN' === err.code) {
-        return res.render('../views/includes/404');
+    if(err) {
+        return res.render('404');
     }
+
+    next();
 };
 
 exports.csrfMiddleware = (req, res, next) => {
