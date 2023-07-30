@@ -8,12 +8,13 @@
             <h1 class="text-center">Login</h1>
             <p class="text-center lead">Acessar sua conta ou crie sua conta abaixo</p>
 
+            <%- include('includes/messages') %>
+
             <div class="row">
                 <div class="col-lg">
                     <h4>Acessar conta</h4>
                     <p>Se voce ja tem uma conta, faca login abaixo:</p>
 
-                    <%- include('includes/messages'); %> 
 
                     <form action="/login/login">
                         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
@@ -32,8 +33,6 @@
                 <div class="col-lg">
                     <h4>Crie sua conta</h4>
                     <p>Preencha o formulario abaixo para criar sua conta:</p>
-
-                    <%- include('includes/messages'); %>
 
                     <form action="/login/register" method="POST">
                         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
