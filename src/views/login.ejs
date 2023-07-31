@@ -16,7 +16,7 @@
                     <p>Se voce ja tem uma conta, faca login abaixo:</p>
 
 
-                    <form action="/login/login">
+                    <form action="/login/login" method="POST">
                         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Email</label>
