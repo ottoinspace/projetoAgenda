@@ -3,10 +3,12 @@ require('dotenv').config();// referente as minhas variaveis de ambiente(senhas, 
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose'); // modelar nossa base de dados
-mongoose.connect(process.env.CONNECTIONSTRING)// o mongoose retorna uma promise
-    .then(() => {
-        app.emit('pronto');
-    })
+mongoose.connect(process.env.CONNECTIONSTRING ,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })// o mongoose retorna uma promise
+    .then(() => app.emit('pronto'))
     .catch(e => console.log(e));
 
 const session = require('express-session'); 
