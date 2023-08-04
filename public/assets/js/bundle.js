@@ -1,6 +1,108 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/modules/Contato.js":
+/*!*************************************!*\
+  !*** ./frontend/modules/Contato.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Contato)
+/* harmony export */ });
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+var alertContato = document.getElementById('alert-contato');
+var Contato = /*#__PURE__*/function () {
+  function Contato(formClass) {
+    _classCallCheck(this, Contato);
+    this.form = document.querySelector(formClass);
+    this.alertCreated = false;
+  }
+  _createClass(Contato, [{
+    key: "init",
+    value: function init() {
+      this.events();
+    }
+  }, {
+    key: "events",
+    value: function events() {
+      var _this = this;
+      if (!this.form) return;
+      this.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        _this.validate(e);
+      });
+    }
+  }, {
+    key: "validate",
+    value: function validate(e) {
+      var el = e.target;
+      var nomeInput = el.querySelector('input[name="nome"]');
+      var emailInput = el.querySelector('input[name="email"]');
+      var telefoneInput = el.querySelector('input[name="telefone"]');
+      var error = false;
+      if (!nomeInput) {
+        this.criarAlert('Nome e obrigatorio');
+        error = true;
+      }
+      if (!validator__WEBPACK_IMPORTED_MODULE_0___default().isEmail(emailInput.value)) {
+        this.criarAlert('Email invalido');
+        error = true;
+      }
+      if (!emailInput || !telefoneInput) {
+        this.criarAlert('Precisa de pelomenos um contato');
+        error = true;
+      }
+      if (!error && this.alertCreated) {
+        this.removeAlert();
+      }
+      if (!error) el.submit();
+    }
+  }, {
+    key: "criarAlert",
+    value: function criarAlert(e) {
+      if (this.alertCreated) return;
+
+      // criando as div
+      var divColMy = document.createElement('div');
+      var divAlert = document.createElement('div');
+
+      // adicionando classes
+      alertContato.classList.add('row');
+      divColMy.classList.add('col', 'my-3');
+      divAlert.classList.add('alert', 'alert-danger');
+
+      // criando a heranca
+      alertContato.appendChild(divColMy);
+      divColMy.appendChild(divAlert);
+
+      // messagem de alerta
+      divAlert.innerHTML = e;
+      this.alertCreated = true;
+    }
+  }, {
+    key: "removeAlert",
+    value: function removeAlert() {
+      alertContato.innerHTML = '';
+      this.alertCreated = false;
+    }
+  }]);
+  return Contato;
+}();
+
+
+/***/ }),
+
 /***/ "./frontend/modules/Login.js":
 /*!***********************************!*\
   !*** ./frontend/modules/Login.js ***!
@@ -29441,6 +29543,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Login */ "./frontend/modules/Login.js");
+/* harmony import */ var _modules_Contato__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Contato */ "./frontend/modules/Contato.js");
 
 
 
@@ -29448,6 +29551,9 @@ var login = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.form-lo
 var cadastro = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.form-cadastro');
 login.init();
 cadastro.init();
+
+var registro = new _modules_Contato__WEBPACK_IMPORTED_MODULE_3__["default"]('.form-contato');
+registro.init();
 
 // import './assets/css/style.css';
 })();

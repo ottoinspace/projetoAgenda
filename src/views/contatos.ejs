@@ -9,6 +9,10 @@
 
             <%- include('includes/messages') %>
 
+            <div id="alert-contato">
+
+            </div>
+
             <% if(contato._id) { %>
             <form class="form-contato" action="/contato/edit/<%= contato._id%>" method="POST">
             <% }else { %>
